@@ -8,9 +8,10 @@ import { Post } from "./post.model";
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
-constructor(private http:HttpClient){}
+  constructor(private http: HttpClient) {}
   getPosts() {
-    return [...this.posts];
+    // return [...this.posts];
+    this.http.get('http://localhost:3000/api/post');
   }
 
   getPostUpdateListener() {
