@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 import { Post } from "./post.model";
 
@@ -7,7 +8,7 @@ import { Post } from "./post.model";
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
-
+constructor(private http:HttpClient){}
   getPosts() {
     return [...this.posts];
   }
