@@ -14,7 +14,11 @@ export class PostsService {
 
   getPosts() {
     this.http
-      .get<{ message: string; posts: any }>("http://localhost:3000/api/posts")
+      // .get<{ message: string; posts: any }>("http://localhost:3000/api/posts")
+      .get<{ message: string; posts: any }>(
+        "https://sarthakbansal.herokuapp.com/api/posts"
+      )
+
       .pipe(
         map(postData => {
           return postData.posts.map(post => {
@@ -40,7 +44,7 @@ export class PostsService {
     const post: Post = { id: null, title: title, content: content };
     this.http
       .post<{ message: string; postId: string }>(
-        "http://localhost:3000/api/posts",
+        "https://sarthakbansal.herokuapp.com/api/posts",
         post
       )
       .subscribe(responseData => {
@@ -53,7 +57,7 @@ export class PostsService {
 
   deletePost(postId: string) {
     this.http
-      .delete("http://localhost:3000/api/posts/" + postId)
+      .delete("https://sarthakbansal.herokuapp.com/api/posts/" + postId)
       .subscribe(() => {
         const updatedPosts = this.posts.filter(post => post.id !== postId);
         this.posts = updatedPosts;
